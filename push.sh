@@ -1,4 +1,4 @@
-cd storage/downloads/blog
+cd ~/storage/downloads/blog
 
 for i in 'master' 'social' 'probot'
 do
