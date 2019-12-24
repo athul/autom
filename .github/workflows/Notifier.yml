@@ -13,5 +13,5 @@ jobs:
       run: echo Ith Workaayi Ketto
     - name: Notifier
       run: |
-        curl https://raw.githubusercontent.com/athul/autom/master/tg_notification.sh > tg_notifier.sh
+        curl https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh > tg_notifier.sh
         sh tg_notifier.sh
