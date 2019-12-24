@@ -1,0 +1,17 @@
+name: Notifier
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Ith Workaayi Ketto
+    - name: Notifier
+      run: |
+        curl https://raw.githubusercontent.com/athul/autom/master/tg_notification.sh > tg_notifier.sh
+        sh tg_notifier.sh
