@@ -14,4 +14,4 @@ jobs:
     - name: Notifier
       run: |
         curl https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh > tg_notifier.sh
-        sh tg_notifier.sh
+        bash tg_notifier.sh
