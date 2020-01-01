@@ -25,10 +25,15 @@ send_msg "
 ID: ${GITHUB_WORKFLOW}
 Action was a *${status}!*
 
-\`Repository:  ${GITHUB_REPOSITORY}\` | [Repo]("https://github.com/${GITHUB_REPOSITORY}")
+\`Repository:  ${GITHUB_REPOSITORY}\` 
+
 On:          *${GITHUB_EVENT_NAME}*
 
-By:            *${GITHUB_ACTOR}* | [Profile]("https://github.com/${GITHUB_ACTOR}/")
+By:            *${GITHUB_ACTOR}* 
+
+[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+
+[Link to Profile]("https://github.com/${GITHUB_ACTOR}/")
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 -----
