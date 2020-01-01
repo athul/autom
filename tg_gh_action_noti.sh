@@ -25,8 +25,8 @@ send_msg "
 ID: ${GITHUB_WORKFLOW}
 Action was a *${status}!*
 
-\`Repository:  ${GITHUB_REPOSITORY}\`
-\`On:          ${GITHUB_EVENT_NAME}\`
+\`Repository:  ${GITHUB_REPOSITORY}\` | [Repo]("https://github.com/${GITHUB_REPOSITORY}")
+On:          *${GITHUB_EVENT_NAME}*
 
 By:            *${GITHUB_ACTOR}* | [Profile]("https://github.com/${GITHUB_ACTOR}/")
 
