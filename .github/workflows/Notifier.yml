@@ -10,5 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Notifier
-      run: |
-        sh -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh")
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID}}
+        TELEGRAM_TOKEN: ${{secrets.TELEGRAM_TOKEN }}
+      run: sh -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh)"
