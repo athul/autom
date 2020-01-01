@@ -20,17 +20,16 @@ send_msg () {
 # Note that for Markdown, you need to escape any backtick (inline-code)
 # characters, since they're reserved in bash
 send_msg "
-🌚⚡️🌝
-ID: ${GITHUB_WORKFLOW}
+✅⭐️❗️🔀
 
+ID: ${GITHUB_WORKFLOW}
 Action was a *${status}!*
 
 \`Repository:  ${GITHUB_REPOSITORY}\`
+\`On:          ${GITHUB_EVENT_NAME}\`
 
-\`On:   ${GITHUB_EVENT_NAME}\`
-
-By:
-*${GITHUB_ACTOR}*
+By:            *${GITHUB_ACTOR}* | [Profile]("https://github.com/${GITHUB_ACTOR}/")
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
+-----
 "
