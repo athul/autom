@@ -9,9 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Ith Workaayi Ketto
     - name: Notifier
       run: |
-        curl https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh > tg_notifier.sh
-        bash tg_notifier.sh
+        sh -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh")
