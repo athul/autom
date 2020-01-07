@@ -1,28 +1,27 @@
 name: Notifier
 
-on: [push]
+on: [push, pull_request, issues, issue_comment, watch]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Notifier
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID}}
-        TELEGRAM_TOKEN: ${{secrets.TELEGRAM_TOKEN }}
-        INPUT_STATUS: ${{ job.status }}
-        STARGAZERS: ${{ github.event.repository.stargazers_count }}
-        FORKERS: ${{ github.event.repository.forks_count }}
-        IU_TITLE: ${{ github.event.issue.title }}
-        IU_NUM: ${{ github.event.issue.number }}
-        IU_ACTOR: ${{ github.event.issue.user.login }}
-        IU_BODY: ${{ github.event.issue.body }}
-        PR_STATE: ${{ github.event.action }}
-        PR_NUM: ${{ github.event.number }}
-        PR_TITLE: ${{ github.event.pull_request.title }}
-        PR_BODY: ${{ github.event.pull_request.body }}
+      - uses: actions/checkout@v1
+      - name: Notifier
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID}}
+          TELEGRAM_TOKEN: ${{secrets.TELEGRAM_TOKEN }}
+          INPUT_STATUS: ${{ job.status }}
+          STARGAZERS: ${{ github.event.repository.stargazers_count }}
+          FORKERS: ${{ github.event.repository.forks_count }}
+          IU_TITLE: ${{ github.event.issue.title }}
+          IU_NUM: ${{ github.event.issue.number }}
+          IU_ACTOR: ${{ github.event.issue.user.login }}
+          IU_BODY: ${{ github.event.issue.body }}
+          PR_STATE: ${{ github.event.action }}
+          PR_NUM: ${{ github.event.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
 
-      run: sh -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/upgrade/tg_gh_action_noti.sh)"
+        run: sh -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/upgrade/tg_gh_action_noti.sh)"
