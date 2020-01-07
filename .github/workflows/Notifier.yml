@@ -14,4 +14,5 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID}}
         TELEGRAM_TOKEN: ${{secrets.TELEGRAM_TOKEN }}
         INPUT_STATUS: ${{ job.status }}
+        STARGAZERS: ${{ github.event.repository.stargazers_count }}
       run: sh -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/master/tg_gh_action_noti.sh)"
