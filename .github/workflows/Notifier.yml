@@ -16,7 +16,6 @@ jobs:
         INPUT_STATUS: ${{ job.status }}
         STARGAZERS: ${{ github.event.repository.stargazers_count }}
         FORKERS: ${{ github.event.repository.forks_count }}
-        C_MSGS: ${{ github.event.commits }}
         IU_TITLE: ${{ github.event.issue.title }}
         IU_NUM: ${{ github.event.issue.number }}
         IU_ACTOR: ${{ github.event.issue.user.login }}

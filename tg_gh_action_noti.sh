@@ -32,8 +32,6 @@ if [ ${GITHUB_EVENT_NAME}=="push" ]; then
 
     Tag:        ${GITHUB_REF}
 
-    Commit Message(s):    ${C_MSGS}
-
     [Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 
     [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
