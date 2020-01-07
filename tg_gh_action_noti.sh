@@ -36,9 +36,11 @@ Tag:        ${GITHUB_REF}
 
 Issue Title and Number  : ${IU_TITLE} ${IU_NUM}
 
-Commented or Created By : ${IU_ACTOR}
+Commented or Created By : \`${IU_ACTOR}\`
 
-Issue Body : ${IU_BODY}
+Issue Body : *${IU_BODY}*
+
+Issue Comment: \`${IU_COM}\`
 
 ------
 
@@ -48,7 +50,7 @@ PR Number:      ${PR_NUM}
 
 PR Title:       ${PR_TITLE}
 
-PR Body:        ${PR_BODY}
+PR Body:        *${PR_BODY}*
 
 ------
 
