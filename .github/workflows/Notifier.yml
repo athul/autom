@@ -25,5 +25,4 @@ jobs:
         PR_NUM: ${{ github.event.number }}
         PR_TITLE: ${{ github.event.pull_request.title }}
         PR_BODY: ${{ github.event.pull_request.body }}
-
       run: sh -c "$(curl -sL https://raw.githubusercontent.com/athul/autom/upgrade/tg_gh_action_noti.sh)"
