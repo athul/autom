@@ -34,7 +34,7 @@ Tag:        ${GITHUB_REF}
 
 ------
 
-Issue Title and Number  : ${IU_TITLE} ${IU_NUM}
+Issue Title and Number  : ${IU_TITLE}  (#${IU_NUM})
 
 Commented or Created By : \`${IU_ACTOR}\`
 
