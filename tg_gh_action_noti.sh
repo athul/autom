@@ -8,7 +8,6 @@ PARSE_MODE="Markdown"
 
 
 status=$INPUT_STATUS
-stars=$STARGAZERS
 # Define send message function. parse_mode can be changed to
 # HTML, depending on how you want to format your message:
 send_msg () {
@@ -31,7 +30,7 @@ On:          *${GITHUB_EVENT_NAME}*
 
 By:            *${GITHUB_ACTOR}* 
 
-No of Stars:    ${stars}
+No of Stars:    ${STARGAZERS}
 
 [Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 
