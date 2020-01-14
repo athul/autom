@@ -18,8 +18,104 @@ send_msg() {
 # Note that for Markdown, you need to escape any backtick (inline-code)
 # characters, since they're reserved in bash
 
-send_msg "
-⬆️📝✨⭐️🗣
+if ["$GITHUB_EVENT_NAME"=="issues"]; then
+    send_msg"
+❗️❗️❗️❗️❗️❗️
+
+Issue ${PR_STATE}
+
+Issue Title and Number  : ${IU_TITLE} | #${IU_NUM}
+
+Commented or Created By : \`${IU_ACTOR}\`
+
+Issue Body : *${IU_BODY}*
+
+[Link to Issue]("https://github.com/${GITHUB_REPOSITORY}/issues/${IU_NUM}")
+
+[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+
+[Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
+"
+elif ["$GITHUB_EVENT_NAME"="issue_comment"]; then
+    send_msg"
+🗣🗣🗣🗣🗣🗣
+
+Issue ${PR_STATE}
+
+Issue Title and Number  : ${IU_TITLE} | #${IU_NUM}
+
+Commented or Created By : \`${IU_ACTOR}\`
+
+Issue Body : *${IU_BODY}*
+
+Issue Comment: \`${IU_COM}\`
+
+[Link to Issue]("https://github.com/${GITHUB_REPOSITORY}/issues/${IU_NUM}")
+
+[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+
+[Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
+"
+elif ["$GITHUB_EVENT_NAME"=="pull_request"]; then
+    send_msg "
+🔃🔀🔃🔀🔃🔀
+
+PR ${PR_STATE} 
+
+PR Number:      ${PR_NUM}
+
+PR Title:       ${PR_TITLE}
+
+PR Body:        *${PR_BODY}*
+
+PR By:          ${GITHUB_ACTOR}
+
+[Link to Issue]("https://github.com/${GITHUB_REPOSITORY}/pull/${PR_NUM}")
+
+[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+
+[Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
+"
+elif ["$GITHUB_EVENT_NAME"=="watch"]; then
+    send_msg"
+⭐️⭐️⭐️
+ID: ${GITHUB_WORKFLOW}
+
+Action was a *${status}!*
+
+By:            *${GITHUB_ACTOR}* 
+
+\`Repository:  ${GITHUB_REPOSITORY}\` 
+
+Star Count      ${STARGAZERS}
+
+Fork Count      ${FORKERS}
+
+[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+
+"
+elif ["$GITHUB_EVENT_NAME"=="schedule"]; then
+
+    send_msg"
+⏱⏰⏱⏰⏱⏰
+
+ID: ${GITHUB_WORKFLOW}
+
+Action was a *${status}!*
+
+*Action was Run on Schedule*
+
+\`Repository:  ${GITHUB_REPOSITORY}\` 
+
+
+[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
+
+"
+
+else
+    send_msg "
+⬆️⇅⬆️⇅
+
 ID: ${GITHUB_WORKFLOW}
 
 Action was a *${status}!*
@@ -31,35 +127,5 @@ On:          *${GITHUB_EVENT_NAME}*
 By:            *${GITHUB_ACTOR}* 
 
 Tag:        ${GITHUB_REF}
-
-------
-
-Issue Title and Number  : ${IU_TITLE}  (#${IU_NUM})
-
-Commented or Created By : \`${IU_ACTOR}\`
-
-Issue Body : *${IU_BODY}*
-
-Issue Comment: \`${IU_COM}\`
-
-------
-
-PR ${PR_STATE} 
-
-PR Number:      ${PR_NUM}
-
-PR Title:       ${PR_TITLE}
-
-PR Body:        *${PR_BODY}*
-
-------
-
-Star Count      ${STARGAZERS}
-
-Fork Count      ${FORKERS}
-
-[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
-
-[Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
-
-    "
+"
+fi
