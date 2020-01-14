@@ -18,8 +18,8 @@ send_msg() {
 # Note that for Markdown, you need to escape any backtick (inline-code)
 # characters, since they're reserved in bash
 
-if ["$GITHUB_EVENT_NAME"="issues"]; then
-    send_msg"
+if [ "$GITHUB_EVENT_NAME" = "issues" ] ; then
+send_msg"
 ❗️❗️❗️❗️❗️❗️
 
 Issue ${PR_STATE}
@@ -36,8 +36,8 @@ Issue Body : *${IU_BODY}*
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif ["$GITHUB_EVENT_NAME"="issue_comment"]; then
-    send_msg"
+elif  [ "$GITHUB_EVENT_NAME" = "issue_comment" ] ; then
+send_msg"
 🗣🗣🗣🗣🗣🗣
 
 Issue ${PR_STATE}
@@ -56,8 +56,8 @@ Issue Comment: \`${IU_COM}\`
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif ["$GITHUB_EVENT_NAME"="pull_request"]; then
-    send_msg "
+elif [ "$GITHUB_EVENT_NAME" = "pull_request" ] ; then
+send_msg "
 🔃🔀🔃🔀🔃🔀
 
 PR ${PR_STATE} 
@@ -76,8 +76,8 @@ PR By:          ${GITHUB_ACTOR}
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif ["$GITHUB_EVENT_NAME"="watch"]; then
-    send_msg"
+elif  [ "$GITHUB_EVENT_NAME" = "watch" ] ; then
+send_msg"
 ⭐️⭐️⭐️
 ID: ${GITHUB_WORKFLOW}
 
@@ -94,9 +94,8 @@ Fork Count      ${FORKERS}
 [Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 
 "
-elif ["$GITHUB_EVENT_NAME"="schedule"]; then
-
-    send_msg"
+elif [ "$GITHUB_EVENT_NAME" = "schedule" ] ; then
+send_msg"
 ⏱⏰⏱⏰⏱⏰
 
 ID: ${GITHUB_WORKFLOW}
@@ -113,7 +112,7 @@ Action was a *${status}!*
 "
 
 else
-    send_msg "
+send_msg "
 ⬆️⇅⬆️⇅
 
 ID: ${GITHUB_WORKFLOW}
