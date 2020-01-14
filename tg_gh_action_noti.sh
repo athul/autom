@@ -18,7 +18,7 @@ send_msg() {
 # Note that for Markdown, you need to escape any backtick (inline-code)
 # characters, since they're reserved in bash
 
-if ["$GITHUB_EVENT_NAME"=="issues"]; then
+if ["$GITHUB_EVENT_NAME"="issues"]; then
     send_msg"
 ❗️❗️❗️❗️❗️❗️
 
@@ -56,7 +56,7 @@ Issue Comment: \`${IU_COM}\`
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif ["$GITHUB_EVENT_NAME"=="pull_request"]; then
+elif ["$GITHUB_EVENT_NAME"="pull_request"]; then
     send_msg "
 🔃🔀🔃🔀🔃🔀
 
@@ -76,7 +76,7 @@ PR By:          ${GITHUB_ACTOR}
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif ["$GITHUB_EVENT_NAME"=="watch"]; then
+elif ["$GITHUB_EVENT_NAME"="watch"]; then
     send_msg"
 ⭐️⭐️⭐️
 ID: ${GITHUB_WORKFLOW}
@@ -94,7 +94,7 @@ Fork Count      ${FORKERS}
 [Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 
 "
-elif ["$GITHUB_EVENT_NAME"=="schedule"]; then
+elif ["$GITHUB_EVENT_NAME"="schedule"]; then
 
     send_msg"
 ⏱⏰⏱⏰⏱⏰
@@ -127,5 +127,7 @@ On:          *${GITHUB_EVENT_NAME}*
 By:            *${GITHUB_ACTOR}* 
 
 Tag:        ${GITHUB_REF}
+
+[Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 "
 fi
