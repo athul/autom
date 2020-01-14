@@ -9,17 +9,16 @@ PARSE_MODE="Markdown"
 status=$INPUT_STATUS
 # Define send message function. parse_mode can be changed to
 # HTML, depending on how you want to format your message:
-send_msg() {
+
     curl -s -X POST ${BOT_URL} -d chat_id=$TELEGRAM_CHAT_ID \
         -d text="$1" -d parse_mode=${PARSE_MODE}
-}
 
 # Send message to the bot with some pertinent details about the job
 # Note that for Markdown, you need to escape any backtick (inline-code)
 # characters, since they're reserved in bash
 
-if [ "$GITHUB_EVENT_NAME" = "issues" ] ; then
-send_msg"
+if [[ "$GITHUB_EVENT_NAME" == "issues" ]] ; then
+send_msg="
 ❗️❗️❗️❗️❗️❗️
 
 Issue ${PR_STATE}
@@ -36,8 +35,10 @@ Issue Body : *${IU_BODY}*
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif  [ "$GITHUB_EVENT_NAME" = "issue_comment" ] ; then
-send_msg"
+curl -s -X POST ${BOT_URL} -d chat_id=$TELEGRAM_CHAT_ID \
+        -d text=${send_msg} -d parse_mode=${PARSE_MODE}
+elif  [[ "$GITHUB_EVENT_NAME" == "issue_comment" ]] ; then
+send_msg="
 🗣🗣🗣🗣🗣🗣
 
 Issue ${PR_STATE}
@@ -56,8 +57,10 @@ Issue Comment: \`${IU_COM}\`
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif [ "$GITHUB_EVENT_NAME" = "pull_request" ] ; then
-send_msg "
+curl -s -X POST ${BOT_URL} -d chat_id=$TELEGRAM_CHAT_ID \
+        -d text=${send_msg} -d parse_mode=${PARSE_MODE}
+elif [[ "$GITHUB_EVENT_NAME" == "pull_request" ]] ; then
+send_msg="
 🔃🔀🔃🔀🔃🔀
 
 PR ${PR_STATE} 
@@ -76,8 +79,10 @@ PR By:          ${GITHUB_ACTOR}
 
 [Build log here]("https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks")
 "
-elif  [ "$GITHUB_EVENT_NAME" = "watch" ] ; then
-send_msg"
+curl -s -X POST ${BOT_URL} -d chat_id=$TELEGRAM_CHAT_ID \
+        -d text=${send_msg} -d parse_mode=${PARSE_MODE}
+elif  [[ "$GITHUB_EVENT_NAME" == "watch" ]] ; then
+send_msg="
 ⭐️⭐️⭐️
 ID: ${GITHUB_WORKFLOW}
 
@@ -94,8 +99,10 @@ Fork Count      ${FORKERS}
 [Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 
 "
-elif [ "$GITHUB_EVENT_NAME" = "schedule" ] ; then
-send_msg"
+curl -s -X POST ${BOT_URL} -d chat_id=$TELEGRAM_CHAT_ID \
+        -d text=${send_msg} -d parse_mode=${PARSE_MODE}
+elif [[ "$GITHUB_EVENT_NAME" == "schedule" ]] ; then
+send_msg="
 ⏱⏰⏱⏰⏱⏰
 
 ID: ${GITHUB_WORKFLOW}
@@ -110,9 +117,10 @@ Action was a *${status}!*
 [Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 
 "
-
+curl -s -X POST ${BOT_URL} -d chat_id=$TELEGRAM_CHAT_ID \
+        -d text=${send_msg} -d parse_mode=${PARSE_MODE}
 else
-send_msg "
+send_msg="
 ⬆️⇅⬆️⇅
 
 ID: ${GITHUB_WORKFLOW}
@@ -129,4 +137,6 @@ Tag:        ${GITHUB_REF}
 
 [Link to Repo ]("https://github.com/${GITHUB_REPOSITORY}/")
 "
+curl -s -X POST ${BOT_URL} -d chat_id=$TELEGRAM_CHAT_ID \
+        -d text=${send_msg} -d parse_mode=${PARSE_MODE}
 fi
