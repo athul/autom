@@ -26,7 +26,7 @@ parse_args() {
   #BINDIR is ./bin unless set be ENV
   # over-ridden by flag below
   
-  BINDIR=${BINDIR:-~/.local/bin} #Thanks to github.com/ssiyad
+  BINDIR=${BINDIR:-/usr/local/bin/shelby} #Thanks to github.com/ssiyad
   while getopts "b:dh?x" arg; do
     case "$arg" in
       b) BINDIR="$OPTARG" ;;
