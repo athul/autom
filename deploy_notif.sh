@@ -18,7 +18,7 @@ send_msg() {
         -d text="$1" -d parse_mode=${PARSE_MODE}
 }
 
-send_msg"
+send_msg "
 The DEPLOY Action was **${status}**
 ---
 The ${GITHUB_REF} is now deployed by ${GITHUB_ACTOR} 
