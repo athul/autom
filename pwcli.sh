@@ -62,11 +62,11 @@ execute() {
 }
 get_binaries() {
   case "$PLATFORM" in
-    darwin/amd64) BINARIES="pwcli" ;;
-    linux/386) BINARIES="pwcli" ;;
-    linux/amd64) BINARIES="pwcli" ;;
-    windows/386) BINARIES="pwcli" ;;
-    windows/amd64) BINARIES="pwcli" ;;
+    darwin/amd64) BINARIES="${BINARY}" ;;
+    linux/386) BINARIES="${BINARY}" ;;
+    linux/amd64) BINARIES="${BINARY}" ;;
+    windows/386) BINARIES="${BINARY}" ;;
+    windows/amd64) BINARIES="${BINARY}" ;;
     *)
       log_crit "platform $PLATFORM is not supported.  Make sure this script is up-to-date and file request at https://github.com/${PREFIX}/issues/new"
       exit 1
@@ -324,7 +324,7 @@ hash_sha256_verify() {
     return 1
   fi
   BASENAME=${TARGET##*/}
-  want=$(grep "${BASENAME}" "${checksums}" 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
+  want=$(grep -i "${BASENAME}" "${checksums}" 2>/dev/null | tr '\t' ' ' | cut -d ' ' -f 1)
   if [ -z "$want" ]; then
     log_err "hash_sha256_verify unable to find checksum for '${TARGET}' in '${checksums}'"
     return 1
@@ -341,11 +341,11 @@ End of functions from https://github.com/client9/shlib
 ------------------------------------------------------------------------
 EOF
 
-PROJECT_NAME="pwcli"
-OWNER=athul
-REPO="pwcli"
-BINARY=pwcli
-FORMAT=tar.gz
+PROJECT_NAME="hopp-cli"
+OWNER="hoppscotch"
+REPO="hopp-cli"
+BINARY="hopp-cli"
+FORMAT="tar.gz"
 OS=$(uname_os)
 ARCH=$(uname_arch)
 PREFIX="$OWNER/$REPO"
